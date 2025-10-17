@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: infra-server
+  server:
+    port: 8080
+  datasource:
+    url: jdbc:postgresql://sbp-yi4i5ugxghp1srcy.supabase.opentrust.net:5432/postgres
+    username: postgres
+    password: 0mW3kpw3yUPCSO
+    driver-class-name: org.postgresql.Driver

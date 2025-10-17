@@ -123,6 +123,31 @@
                 <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
+
+            <!-- DB -->
+            <dependency>
+                <groupId>com.dream</groupId>
+                <artifactId>dream-colaYudao-mybatis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <!-- 注意：必须声明，避免 flowable 和 mybatis-plus 引入的 mybatis 版本不一致！！！ -->
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.dream</groupId>
+                <artifactId>dream-colaYudao-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

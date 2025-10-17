@@ -10,11 +10,6 @@
     <name>dream-colaYudao-framework</name>
     <url>http://maven.apache.org</url>
 
-    <properties>
-        <revision>2025.09-SNAPSHOT</revision>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <parent>
         <groupId>com.dream</groupId>
         <artifactId>dream-colaYudao</artifactId>
@@ -23,6 +18,7 @@
 
     <modules>
         <module>dream-colaYudao-common</module>
+        <module>dream-colaYudao-mybatis</module>
     </modules>
 
 </project>

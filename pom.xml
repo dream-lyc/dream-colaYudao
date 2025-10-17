@@ -11,6 +11,7 @@
     <modules>
         <module>dream-colaYudao-dependencies</module>
         <module>dream-colaYudao-framework</module>
+        <module>dream-colaYudao-infra</module>
         <!-- Server 主项目 -->
 
         <!--  各种 module 拓展 -->
