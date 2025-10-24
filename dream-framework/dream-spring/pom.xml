@@ -1,0 +1,34 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dream</groupId>
+        <artifactId>dream-framework</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>dream-spring</artifactId>
+    <packaging>jar</packaging>
+    <name>dream-spring</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.dream</groupId>
+            <artifactId>dream-common</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

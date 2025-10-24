@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: system-server
+  server:
+    port: 8080
+  datasource:
+    url: jdbc:postgresql://sbp-yi4i5ugxghp1srcy.supabase.opentrust.net:5432/postgres
+    username: postgres
+    password: 0mW3kpw3yUPCSO
+    driver-class-name: org.postgresql.Driver
+
+  mybatis-plus:
+    mapper-locations: classpath*:/mapper/**/*.xml
+    type-aliases-package: com.dream.*
+    global-config:
+      db-config:
+        id-type: auto

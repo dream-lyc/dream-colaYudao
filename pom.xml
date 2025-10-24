@@ -9,9 +9,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dream-colaYudao-dependencies</module>
-        <module>dream-colaYudao-framework</module>
-        <module>dream-colaYudao-infra</module>
+        <module>dream-dependencies</module>
+        <module>dream-framework</module>
+        <module>dream-infra</module>
+        <module>dream-demo</module>
+        <module>dream-system</module>
         <!-- Server 主项目 -->
 
         <!--  各种 module 拓展 -->
@@ -42,7 +44,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.dream</groupId>
-                <artifactId>dream-colaYudao-dependencies</artifactId>
+                <artifactId>dream-dependencies</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
