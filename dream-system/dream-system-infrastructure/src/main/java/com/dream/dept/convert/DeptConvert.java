@@ -12,4 +12,6 @@ public interface DeptConvert {
 
     Dept convert2Entity(DeptDO DO);
 
+    DeptDO convert2DO(Dept dept);
+
 }

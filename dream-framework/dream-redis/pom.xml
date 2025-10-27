@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dream</groupId>
-        <artifactId>dream-colaYudao</artifactId>
+        <artifactId>dream-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>dream-demo</artifactId>
+    <artifactId>dream-redis</artifactId>
     <packaging>jar</packaging>
 
-    <name>dream-demo</name>
+    <name>dream-redis</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -25,12 +25,8 @@
 
         <!-- DB 相关 -->
         <dependency>
-            <groupId>com.dream</groupId>
-            <artifactId>dream-mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.dream</groupId>
-            <artifactId>dream-redis</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 </project>

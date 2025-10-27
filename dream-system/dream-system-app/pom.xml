@@ -29,5 +29,10 @@
             <artifactId>dream-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.dream</groupId>
+            <artifactId>dream-redis</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

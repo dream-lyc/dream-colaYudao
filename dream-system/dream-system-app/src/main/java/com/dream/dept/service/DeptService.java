@@ -20,4 +20,9 @@ public class DeptService {
         Dept dept = deptGateWay.getDept(id);
         return appDeptConvert.convert2DTO(dept);
     }
+
+    public Long createDept(DeptDTO deptDTO) {
+        Dept dept = appDeptConvert.convert2Entity(deptDTO);
+        return deptGateWay.createDept(dept);
+    }
 }

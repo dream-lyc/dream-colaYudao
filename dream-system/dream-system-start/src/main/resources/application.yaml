@@ -9,6 +9,14 @@ spring:
     password: 0mW3kpw3yUPCSO
     driver-class-name: org.postgresql.Driver
 
+  data:
+    redis:
+      host: redis-10371.crce178.ap-east-1-1.ec2.redns.redis-cloud.com
+      username: default
+      password: kE7akxqkwnDspyXSvzsebG72cwwbCgXo
+      port: 10371 # 端口
+      database: 0 # 数据库索引
+
   mybatis-plus:
     mapper-locations: classpath*:/mapper/**/*.xml
     type-aliases-package: com.dream.*

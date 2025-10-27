@@ -11,4 +11,6 @@ public interface AppDeptConvert {
 
     DeptDTO convert2DTO(Dept dept);
 
+    Dept convert2Entity(DeptDTO deptDTO);
+
 }

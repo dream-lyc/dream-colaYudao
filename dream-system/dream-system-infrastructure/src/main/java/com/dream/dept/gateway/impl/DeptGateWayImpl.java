@@ -22,4 +22,11 @@ public class DeptGateWayImpl implements DeptGateWay {
         DeptDO deptDO = deptMapper.selectById(id);
         return deptConvert.convert2Entity(deptDO);
     }
+
+    @Override
+    public Long createDept(Dept dept) {
+        DeptDO deptDO = deptConvert.convert2DO(dept);
+        int id = deptMapper.insert(deptDO);
+        return (long) id;
+    }
 }

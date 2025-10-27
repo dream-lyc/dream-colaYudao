@@ -20,6 +20,7 @@
         <module>dream-common</module>
         <module>dream-mybatis</module>
         <module>dream-spring</module>
+        <module>dream-redis</module>
     </modules>
 
 </project>

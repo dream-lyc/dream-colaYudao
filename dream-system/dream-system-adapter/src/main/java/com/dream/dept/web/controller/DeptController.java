@@ -24,6 +24,12 @@ public class DeptController {
     private DeptService deptService;
 
     @PostMapping("create")
+    public SingleResponse<Long> createDept(@RequestBody DeptDTO deptDTO) {
+        Long id = deptService.createDept(deptDTO);
+        return SingleResponse.of(id);
+    }
+
+    @PostMapping("detail")
     public SingleResponse<DeptDTO> getDept(@RequestBody Long id) {
         DeptDTO dept = deptService.getDept(id);
         return SingleResponse.of(dept);
