@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dream</groupId>
-        <artifactId>dream-system</artifactId>
+        <artifactId>dream-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>dream-system-adapter</artifactId>
+    <artifactId>dream-security</artifactId>
     <packaging>jar</packaging>
 
-    <name>dream-system-adapter</name>
+    <name>dream-security</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -20,18 +20,20 @@
     <dependencies>
         <dependency>
             <groupId>com.dream</groupId>
-            <artifactId>dream-system-app</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dream</groupId>
             <artifactId>dream-common</artifactId>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.dream</groupId>-->
-<!--            <artifactId>dream-security</artifactId>-->
-<!--        </dependency>-->
-
+        <!-- Spring 核心 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
     </dependencies>
 </project>

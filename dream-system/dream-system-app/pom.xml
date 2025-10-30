@@ -34,5 +34,10 @@
             <artifactId>dream-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.dream</groupId>
+            <artifactId>dream-security</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

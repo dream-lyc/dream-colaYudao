@@ -21,6 +21,7 @@
         <module>dream-mybatis</module>
         <module>dream-spring</module>
         <module>dream-redis</module>
+        <module>dream-security</module>
     </modules>
 
 </project>

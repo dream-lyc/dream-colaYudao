@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.dream")
-@MapperScan("com.dream.dept.mapper")
+@MapperScan("com.dream.*.mapper")
 public class SystemStart {
     public static void main(String[] args) {
         SpringApplication.run(SystemStart.class, args);
