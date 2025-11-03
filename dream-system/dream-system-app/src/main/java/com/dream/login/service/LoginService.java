@@ -2,23 +2,32 @@ package com.dream.login.service;
 
 import com.dream.common.enums.CommonStatusEnum;
 import com.dream.login.DTO.LoginDTO;
+import com.dream.login.convert.LoginConvert;
+import com.dream.oauth2.model.OAuth2AccessToken;
+import com.dream.oauth2.service.OAuth2TokenService;
+import com.dream.user.enums.UserTypeEnum;
 import com.dream.user.gateway.UserGateWay;
 import com.dream.user.model.AdminUser;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
     @Autowired
     UserGateWay userGateWay;
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
+    @Autowired
+    OAuth2TokenService oauth2TokenService;
+    @Autowired
+    LoginConvert loginConvert;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public LoginDTO login(String name, String password) {
+        //认证
         AdminUser user = authenticate(name, password);
-        LoginDTO loginDTO = new LoginDTO();
-        BeanUtils.copyProperties(user, loginDTO);
+        //获取token
+        LoginDTO loginDTO = createTokenAfterLoginSuccess(user.getId(), user.getUsername());
         return loginDTO;
     }
 
@@ -39,8 +48,19 @@ public class LoginService {
     }
 
     private Boolean isPasswordMatch(String rawPassword, String encodedPassword) {
-//        return passwordEncoder.matches(rawPassword, encodedPassword);
-        return true;
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
+    private LoginDTO createTokenAfterLoginSuccess(Long userId, String username) {
+        // 创建访问令牌
+        OAuth2AccessToken accessTokenDO = oauth2TokenService.createAccessToken(userId, getUserType().getValue(),
+                "default", null);
+        // 构建返回结果
+        return loginConvert.convert2LoginDTO(accessTokenDO);
+    }
+
+    private UserTypeEnum getUserType() {
+        return UserTypeEnum.ADMIN;
     }
 
 }
