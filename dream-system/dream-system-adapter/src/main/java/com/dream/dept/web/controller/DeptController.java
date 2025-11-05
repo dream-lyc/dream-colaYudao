@@ -31,6 +31,7 @@ public class DeptController {
     public SingleResponse<DeptDTO> getDept(@RequestBody Long id) {
         DeptDTO dept = deptService.getDept(id);
         return SingleResponse.of(dept);
+
     }
 
 
