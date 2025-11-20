@@ -37,7 +37,7 @@ public class UserGateWayImpl implements UserGateWay {
     @Override
     public Long createUser(AdminUser user) {
         AdminUserDO adminUserDO = userConvert.convert2DO(user);
-        int id = userMapper.insert(adminUserDO);
-        return (long) id;
+        userMapper.insert(adminUserDO);
+        return adminUserDO.getId();
     }
 }

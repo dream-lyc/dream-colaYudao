@@ -1,4 +1,4 @@
-package com.dream.dept.web.controller;
+package com.dream.web.controller;
 
 import com.dream.login.DTO.LoginDTO;
 import com.dream.login.service.LoginService;
