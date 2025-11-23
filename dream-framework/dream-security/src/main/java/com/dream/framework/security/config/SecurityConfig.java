@@ -1,5 +1,6 @@
 package com.dream.framework.security.config;
 
+import com.dream.framework.common.biz.system.oauth2.OAuth2TokenCommonApi;
 import com.dream.framework.security.core.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,8 @@ public class SecurityConfig {
 
     @Autowired
     private RequestMappingHandlerMapping handlerMapping;
+    @Autowired
+    private OAuth2TokenCommonApi oAuth2TokenCommonApi;
 
 
     @Bean
@@ -36,7 +39,7 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
-        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(authenticationManager);
+        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(authenticationManager,oAuth2TokenCommonApi);
         return http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)

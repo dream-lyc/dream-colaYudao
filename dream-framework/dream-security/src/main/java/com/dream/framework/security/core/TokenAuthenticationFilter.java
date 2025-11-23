@@ -1,5 +1,7 @@
 package com.dream.framework.security.core;
 
+import com.dream.framework.common.biz.system.oauth2.OAuth2TokenCommonApi;
+import com.dream.framework.common.biz.system.oauth2.dto.OAuth2AccessTokenCheckRespDTO;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,9 +18,12 @@ import java.io.IOException;
 
 public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    public TokenAuthenticationFilter(AuthenticationManager authenticationManager) {
+    private OAuth2TokenCommonApi  oAuth2TokenCommonApi;
+
+    public TokenAuthenticationFilter(AuthenticationManager authenticationManager, OAuth2TokenCommonApi oAuth2TokenCommonApi) {
         // 匹配所有路径，方法不限
         super("/**");
+        this.oAuth2TokenCommonApi = oAuth2TokenCommonApi;
         setAuthenticationManager(authenticationManager);
     }
 
@@ -42,10 +47,10 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     }
 
     private LoginUser gerUserByToken(String token) {
-//        OAuth2AccessTokenCheckRespDTO oAuth2AccessTokenCheckRespDTO = oauth2TokenApi.checkAccessToken(token);
-//        if (oAuth2AccessTokenCheckRespDTO == null) {
-//            return null;
-//        }
+        OAuth2AccessTokenCheckRespDTO oAuth2AccessTokenCheckRespDTO = oAuth2TokenCommonApi.checkAccessToken(token);
+        if (oAuth2AccessTokenCheckRespDTO == null) {
+            return null;
+        }
         return new LoginUser();
     }
 
