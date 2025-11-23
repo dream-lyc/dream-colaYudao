@@ -8,4 +8,6 @@ public interface Oauth2Gateway {
     void insert(OAuth2RefreshToken oAuth2RefreshToken);
 
     void insert(OAuth2AccessToken oAuth2AccessToken);
+
+    OAuth2AccessToken getAccessToken(String accessToken);
 }

@@ -4,6 +4,7 @@ package com.dream.system.oauth2.service;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import com.dream.system.oauth2.DO.OAuth2AccessTokenDO;
 import com.system.oauth2.gateway.Oauth2Gateway;
 import com.system.oauth2.model.OAuth2AccessToken;
 import com.system.oauth2.model.OAuth2Client;
@@ -113,18 +114,19 @@ public class OAuth2TokenServiceImpl implements OAuth2TokenService {
 //        return accessTokenDO;
 //    }
 //
-//    @Override
-//    public OAuth2AccessTokenDO checkAccessToken(String accessToken) {
-//        OAuth2AccessTokenDO accessTokenDO = getAccessToken(accessToken);
-//        if (accessTokenDO == null) {
-//            throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌不存在");
-//        }
+    @Override
+    public OAuth2AccessToken checkAccessToken(String accessToken) {
+
+        OAuth2AccessToken token = oauth2Gateway.getAccessToken(accessToken);
+        if (token == null) {
+            throw new RuntimeException("访问令牌不存在");
+        }
 //        if (DateUtils.isExpired(accessTokenDO.getExpiresTime())) {
-//            throw exception0(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "访问令牌已过期");
+//            throw new RuntimeException("访问令牌已过期");
 //        }
-//        return accessTokenDO;
-//    }
-//
+        return token;
+    }
+
 //    @Override
 //    @Transactional(rollbackFor = Exception.class)
 //    public OAuth2AccessTokenDO removeAccessToken(String accessToken) {

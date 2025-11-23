@@ -1,6 +1,6 @@
 package com.dream.system.login.service;
 
-import com.dream.system.common.enums.CommonStatusEnum;
+import com.dream.framework.common.enums.CommonStatusEnum;
 import com.dream.system.login.DTO.LoginDTO;
 import com.dream.system.login.convert.LoginConvert;
 import com.system.oauth2.model.OAuth2AccessToken;

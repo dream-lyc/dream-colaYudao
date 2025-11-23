@@ -49,13 +49,13 @@ public interface OAuth2TokenService {
 //     */
 //    OAuth2AccessToken getAccessToken(String accessToken);
 //
-//    /**
-//     * 校验访问令牌
-//     *
-//     * @param accessToken 访问令牌
-//     * @return 访问令牌的信息
-//     */
-//    OAuth2AccessToken checkAccessToken(String accessToken);
+    /**
+     * 校验访问令牌
+     *
+     * @param accessToken 访问令牌
+     * @return 访问令牌的信息
+     */
+    OAuth2AccessToken checkAccessToken(String accessToken);
 //
 //    /**
 //     * 移除访问令牌

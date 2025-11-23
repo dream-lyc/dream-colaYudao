@@ -5,10 +5,7 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.dream.system.dept.DTO.DeptDTO;
 import com.dream.system.dept.service.DeptService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -24,8 +21,8 @@ public class DeptController {
         return SingleResponse.of(id);
     }
 
-    @PostMapping("detail")
-    public SingleResponse<DeptDTO> getDept(@RequestBody Long id) {
+    @GetMapping("detail")
+    public SingleResponse<DeptDTO> getDept(@RequestParam("id") Long id) {
         DeptDTO dept = deptService.getDept(id);
         return SingleResponse.of(dept);
 
