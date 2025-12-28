@@ -2,7 +2,6 @@ package com.dream.framework.security.config;
 
 import com.dream.framework.common.biz.system.oauth2.OAuth2TokenCommonApi;
 import com.dream.framework.security.core.TokenAuthenticationFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,34 +15,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
-    @Autowired
-    private RequestMappingHandlerMapping handlerMapping;
-    @Autowired
-    private OAuth2TokenCommonApi oAuth2TokenCommonApi;
-
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public TokenAuthenticationFilter  tokenAuthenticationFilter(AuthenticationManager  authenticationManager, OAuth2TokenCommonApi oAuth2TokenCommonApi) {
+        return new TokenAuthenticationFilter(authenticationManager, oAuth2TokenCommonApi);
     }
 
     /**
      * 定义安全规则（如 URL 访问权限、登录方式等）
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
-        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(authenticationManager,oAuth2TokenCommonApi);
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,TokenAuthenticationFilter filter) throws Exception {
+//        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(authenticationManager,oAuth2TokenCommonApi);
         return http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated()
                 )

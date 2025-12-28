@@ -2,7 +2,6 @@ package com.dream.framework.security.core;
 
 import com.dream.framework.common.biz.system.oauth2.OAuth2TokenCommonApi;
 import com.dream.framework.common.biz.system.oauth2.dto.OAuth2AccessTokenCheckRespDTO;
-import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,10 +9,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 
 import java.io.IOException;
-
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -33,9 +35,12 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         //1. 提取 token
         String token = getToken(request);
         //2. 查 token，获取 user
-        LoginUser loginUser = gerUserByToken(token);
+        LoginUser loginUser = getUserByToken(token);
         //3.设置当前用户
-        return new UsernamePasswordAuthenticationToken(loginUser, null, null);
+        List<GrantedAuthority> authorities = loginUser.getScopes().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role)) // 加ROLE_前缀
+                .collect(Collectors.toList());
+        return new UsernamePasswordAuthenticationToken(loginUser, null, authorities);
     }
 
     private String getToken(HttpServletRequest request) {
@@ -46,12 +51,21 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         return token.substring(7).trim();
     }
 
-    private LoginUser gerUserByToken(String token) {
+    private LoginUser getUserByToken(String token) {
         OAuth2AccessTokenCheckRespDTO oAuth2AccessTokenCheckRespDTO = oAuth2TokenCommonApi.checkAccessToken(token);
         if (oAuth2AccessTokenCheckRespDTO == null) {
             return null;
         }
-        return new LoginUser();
+
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(oAuth2AccessTokenCheckRespDTO.getUserId());
+        loginUser.setUserType(oAuth2AccessTokenCheckRespDTO.getUserType());
+        loginUser.setInfo(oAuth2AccessTokenCheckRespDTO.getUserInfo());
+        loginUser.setTenantId(oAuth2AccessTokenCheckRespDTO.getTenantId());
+        loginUser.setScopes(oAuth2AccessTokenCheckRespDTO.getScopes());
+        loginUser.setExpiresTime(oAuth2AccessTokenCheckRespDTO.getExpiresTime());
+        
+        return loginUser;
     }
 
 
